@@ -1544,6 +1544,18 @@ class Face():
         if text is not None:
             cv2.putText(image, text, (int(pt1[0]),int(pt1[1]-20)),cv2.FONT_HERSHEY_SIMPLEX, 1, color, thickness)
 
+    def points_draw_bounding_box(self, image:np.ndarray, color:tuple=(255,0,0), thickness:int=1, text=None):
+        """Draws a bounding box around the face
+
+        Args:
+            image (np.ndarray): The image on which we will draw the bounding box
+            color (tuple, optional): The color of the bounding box. Defaults to (255,0,0).
+            thickness (int, optional): The line thickness. Defaults to 1.
+        """
+        pt1 = self.npLandmarks.min(axis=0)
+        pt2 = self.npLandmarks.max(axis=0)
+        return pt1,pt2;
+
     def get_face_outer_vertices(self):
         """ Draws a bounding box around the face that rotates wit the face
         Returns
